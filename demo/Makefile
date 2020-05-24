@@ -1,4 +1,4 @@
-ZTSC = "intelecy/ztsc:0.0.1"
+ZTSC = "intelecy/ztsc:latest"
 
 default:
 

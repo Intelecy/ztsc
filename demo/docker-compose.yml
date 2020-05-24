@@ -5,7 +5,7 @@ services:
     networks:
       - private
   ztsc:
-    image: intelecy/ztsc:0.0.1
+    image: intelecy/ztsc:latest
     environment:
       ZT_NETWORK_ID: 8056c2e21c000001
     depends_on:
