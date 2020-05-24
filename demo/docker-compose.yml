@@ -7,7 +7,7 @@ services:
   ztsc:
     image: intelecy/ztsc:latest
     environment:
-      ZT_NETWORK_ID: 8056c2e21c000001
+      - ZT_NETWORK_ID
     depends_on:
       - unsplash
     cap_add:
