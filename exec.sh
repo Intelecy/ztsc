@@ -19,6 +19,11 @@ if [ ! -f /etc/caddy/Caddyfile ]; then
     exit 1
 fi
 
+if [ "$ZT_NETWORK_ID" = "8056c2e21c000001" ]; then
+	echo "WARNING! You are connecting to ZeroTier's Earth network!"
+	echo "If you join this or any other public network, make sure your computer is up to date on all security patches and you've stopped, locally firewalled, or password protected all services on your system that listen for outside connections."
+fi
+
 zerotier-one -d -p0
 
 # let zerotier daemon startup
@@ -28,9 +33,9 @@ sleep 1
 zerotier-cli join "$ZT_NETWORK_ID"
 
 while /bin/true; do
-	addr=$(zerotier-cli listnetworks -j | jq -r .[0].assignedAddresses[0])
+	addr=$(zerotier-cli listnetworks -j | jq -r '.[0].assignedAddresses | join(", ")')
     if [ "$addr" != "null" ]; then
-    	echo "ZeroTier address: $addr"
+    	echo "ZeroTier assigned addresses: $addr"
     	echo "starting Caddy server..."
 		exec caddy run --watch --adapter caddyfile --config /etc/caddy/Caddyfile
     fi

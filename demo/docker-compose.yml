@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  unsplash:
+    build: .
+    networks:
+      - private
+  ztsc:
+    image: intelecy/ztsc:0.0.1
+    environment:
+      ZT_NETWORK_ID: 8056c2e21c000001
+    depends_on:
+      - unsplash
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    devices:
+      - /dev/net/tun
+    init: true
+    volumes:
+      - ./identity.public:/var/lib/zerotier-one/identity.public:ro
+      - ./identity.secret:/var/lib/zerotier-one/identity.secret:ro
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    networks:
+      - private
+networks:
+  private:
