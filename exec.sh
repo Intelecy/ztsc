@@ -34,7 +34,7 @@ zerotier-cli join "$ZT_NETWORK_ID"
 
 while /bin/true; do
 	addr=$(zerotier-cli listnetworks -j | jq -r '.[0].assignedAddresses | join(", ")')
-    if [ "$addr" != "null" ]; then
+    if [ "$addr" != "" ]; then
     	echo "ZeroTier assigned addresses: $addr"
     	echo "starting Caddy server..."
 		exec caddy run --watch --adapter caddyfile --config /etc/caddy/Caddyfile
