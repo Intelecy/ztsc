@@ -20,18 +20,18 @@ elif [ -n "$ZT_IDENTITY_SECRET_PATH" ]; then
 fi
 
 if [ ! -f /var/lib/zerotier-one/identity.public ]; then
-    echo "/var/lib/zerotier-one/identity.public not found!"
-    exit 1
+	echo "/var/lib/zerotier-one/identity.public not found!"
+	exit 1
 fi
 
 if [ ! -f /var/lib/zerotier-one/identity.secret ]; then
-    echo "/var/lib/zerotier-one/identity.secret not found!"
-    exit 1
+	echo "/var/lib/zerotier-one/identity.secret not found!"
+	exit 1
 fi
 
 if [ ! -f "$CADDYFILE_PATH" ]; then
-    echo "$CADDYFILE_PATH not found!"
-    exit 1
+	echo "$CADDYFILE_PATH not found!"
+	exit 1
 fi
 
 if [ "$ZT_NETWORK_ID" = "8056c2e21c000001" ]; then
@@ -52,11 +52,11 @@ zerotier-cli join "$ZT_NETWORK_ID"
 
 while /bin/true; do
 	addr=$(zerotier-cli listnetworks -j | jq -r '.[0].assignedAddresses | join(", ")')
-    if [ "$addr" != "" ]; then
-    	echo "ZeroTier assigned addresses: $addr"
-    	echo "starting Caddy server..."
+	if [ "$addr" != "" ]; then
+		echo "ZeroTier assigned addresses: $addr"
+		echo "starting Caddy server..."
 		exec caddy run --adapter caddyfile --config "$CADDYFILE_PATH"
-    fi
-    echo "waiting for ZeroTier..."
-    sleep 2
+	fi
+	echo "waiting for ZeroTier..."
+	sleep 2
 done
