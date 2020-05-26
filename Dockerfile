@@ -7,10 +7,10 @@ FROM alpine:${ALPINE_VERSION} as zt-builder
 
 ARG ZT_VERSION=1.4.6
 
-RUN apk add --update alpine-sdk linux-headers \
+RUN apk add --no-cache --update clang clang-dev alpine-sdk linux-headers \
   && git clone --depth 1 --branch ${ZT_VERSION} https://github.com/zerotier/ZeroTierOne.git /src \
   && cd /src \
-  && make -f make-linux.mk
+  && make -f make-linux.mk zerotier-one
 
 FROM alpine:${ALPINE_VERSION}
 
