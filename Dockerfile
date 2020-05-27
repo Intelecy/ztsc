@@ -26,6 +26,8 @@ RUN mkdir -p /var/lib/zerotier-one \
 
 COPY --from=caddy /usr/bin/caddy /usr/bin/caddy
 
+RUN mkdir /etc/caddy/ && printf "http://\n\nrespond \"ZeroTier sidecar is working! Now you just need a real Caddyfile.\"" > /etc/caddy/Caddyfile
+
 ADD exec.sh /usr/local/bin
 
 CMD ["exec.sh"]
