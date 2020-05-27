@@ -1,7 +1,9 @@
 # ztsc
 ZeroTier + Caddy sidecar
 
-![Docker Image CI](https://img.shields.io/github/workflow/status/intelecy/ztsc/Docker%20Image%20CI)  [![docker](https://img.shields.io/docker/image-size/intelecy/ztsc/latest)](https://hub.docker.com/r/intelecy/ztsc)
+![Docker Image CI](https://img.shields.io/github/workflow/status/intelecy/ztsc/Docker%20Image%20CI?logo=github&style=for-the-badge)
+[![image size](https://img.shields.io/docker/image-size/intelecy/ztsc/latest?logo=docker&style=for-the-badge)](https://hub.docker.com/r/intelecy/ztsc)
+[![version](https://img.shields.io/docker/v/intelecy/ztsc?logo=docker&sort=semver&style=for-the-badge)](https://hub.docker.com/r/intelecy/ztsc)
 
 ## Overview
 
