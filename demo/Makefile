@@ -14,3 +14,6 @@ zerotier-identity: identity.secret identity.public
 
 start: zerotier-identity
 	docker-compose -p ztsc-demo up --build
+
+build:
+	docker build -t intelecy/ztsc-demo .
