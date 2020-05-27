@@ -7,7 +7,7 @@ ZeroTier + Caddy sidecar
 
 ## Overview
 
-**tl;dr:** quick'n'dirty secure access to one-off apps that need remote access
+**tl;dr:** quick'n'dirty secure/remote access to one-off apps
 
 ![handdrawn art](overview.png)
 
