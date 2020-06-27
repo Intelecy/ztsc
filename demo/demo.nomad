@@ -1,9 +1,10 @@
 job "ztsc-demo" {
-  datacenters = ["azure"]
+  datacenters = ["dc1"]
   type        = "service"
 
   group "demo1" {
     count = 1
+
 
     task "zerotier" {
       driver = "docker"
@@ -56,6 +57,11 @@ EOH
         network {
           port "http" {}
         }
+      }
+
+      service {
+        name = "unspash"
+        port = "http"
       }
 
       config {
