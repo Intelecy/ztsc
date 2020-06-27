@@ -17,7 +17,7 @@ expose one or more services running within a container orchestration platform li
 `ztsc` was built to quickly bridge the gap between "Hey, check out this cool datascience* app I built. It's running on
 my laptop." and "Hey devops (team of one), can you host this somewhere for the next month?".
 
-Example: A data scientist creates a [streamlit](https://www.streamlit.io/) app, and wants to share it internally with
+**Example**: A data scientist creates a [streamlit](https://www.streamlit.io/) app, and wants to share it internally with
 several other employees. Devops has a Nomad cluster, but can't be bothered with setting up a new load balancer, Azure 
 infrastructure, or any other dedicated networking. With `ztsc`, the app is hosted within Nomad, and is accessible
 to anyone on that ZeroTier network. No need to add any cloud infrastructure, nor grant direct (VPN) user access to ports
@@ -37,6 +37,10 @@ See:
 
 * [Getting Started with ZeroTier](https://zerotier.atlassian.net/wiki/spaces/SD/pages/8454145/Getting+Started+with+ZeroTier)
 * [Caddyfile Tutorial](https://caddyserver.com/docs/caddyfile-tutorial)
+
+## Demo
+
+See Docker Compose and Nomad [demo](demo/README.md)
 
 ### Caddyfile
 
