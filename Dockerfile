@@ -5,7 +5,7 @@ FROM caddy:${CADDDY_VERSION}-alpine as caddy
 
 FROM alpine:${ALPINE_VERSION} as zt-builder
 
-ARG ZT_VERSION=1.4.6
+ARG ZT_VERSION=1.6.4
 
 RUN apk add --no-cache --update clang clang-dev alpine-sdk linux-headers \
   && git clone --depth 1 --branch ${ZT_VERSION} https://github.com/zerotier/ZeroTierOne.git /src \
