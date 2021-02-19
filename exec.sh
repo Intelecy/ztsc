@@ -47,16 +47,25 @@ sleep 1
 
 echo "ZeroTier identity: $(zerotier-cli info -j | jq -r .address)"
 
-# TODO: allow for multiple networks
-zerotier-cli join "$ZT_NETWORK_ID"
+has_ip() {
+	zerotier-cli listnetworks -j | jq -er '.[] | select(.id == "'$1'") | .assignedAddresses | length > 0' &>/dev/null
+}
 
-while /bin/true; do
-	addr=$(zerotier-cli listnetworks -j | jq -r '.[0].assignedAddresses | join(", ")')
-	if [ "$addr" != "" ]; then
-		echo "ZeroTier assigned addresses: $addr"
-		echo "starting Caddy server..."
-		exec caddy run --adapter caddyfile --config "$CADDYFILE_PATH"
-	fi
-	echo "waiting for ZeroTier..."
-	sleep 2
+for network_id in $ZT_NETWORK_ID; do
+	(
+	  echo "ZT $network_id: Joining network... `zerotier-cli join "$network_id"`"
+
+		while ! has_ip $network_id; do
+			echo "ZT $network_id: waiting for IP(s)..."
+			sleep 2
+		done
+
+		ips="`zerotier-cli listnetworks -j | jq -r '.[] | select(.id == "'$network_id'") | .assignedAddresses | join(", ")'`"
+		echo "ZT $network_id: has address(es) $ips"
+	)&
 done
+
+wait
+
+echo "starting Caddy server..."
+exec caddy run --adapter caddyfile --config "$CADDYFILE_PATH"
