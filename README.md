@@ -55,7 +55,8 @@ For example:
 
 ### Environmental Variables
 
-* `ZT_NETWORK_ID` (required) -- 16 byte network address of the ZeroTier network you want to join.
+* `ZT_NETWORK_ID` (required) -- 16 byte network address of the ZeroTier network you want to join. Multiple networks
+    can be joined by separating them with a space.
 * `CADDYFILE_PATH` (optional, default `/etc/caddy/Caddyfile`) -- path to Caddyfile.
 * `ZT_IDENTITY_PUBLIC` (optional) -- public part of ZeroTier identity.
 * `ZT_IDENTITY_PUBLIC_PATH` (optional, default `/var/lib/zerotier-one/identity.public`) -- path to file containing
